@@ -16,6 +16,7 @@ public class DisciplinesListController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         List<Discipline> disciplines = DBManager.getAllActiveDisciplines();
 
         req.setAttribute("disces", disciplines);

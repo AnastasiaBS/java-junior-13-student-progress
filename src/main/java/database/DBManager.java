@@ -1,22 +1,23 @@
 package database;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import entity.Discipline;
 
 import javax.xml.transform.Result;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBManager {
     private static Connection con;
+    private static PreparedStatement modifyDiscipline;
+
 
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_crm?useUnicode=true&serverTimezone=UTC", "root", "Root");
+            modifyDiscipline = con.prepareStatement("UPDATE `discipline` SET `discipline` = ? WHERE (`id` = ?);");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +60,16 @@ public class DBManager {
         try {
             Statement stm = con.createStatement();
             stm.execute("INSERT INTO `discipline` (`discipline`) VALUES ('" + newDiscipline + "');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void modifyDiscipline(String newDiscipline, String id) {
+        try {
+            modifyDiscipline.setString(1, newDiscipline);
+            modifyDiscipline.setString(2, id);
+            modifyDiscipline.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

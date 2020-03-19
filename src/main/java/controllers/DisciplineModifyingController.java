@@ -21,4 +21,14 @@ public class DisciplineModifyingController extends HttpServlet {
         req.setAttribute("currentPage", "/WEB-INF/disciplineModifying.jsp");
         req.getRequestDispatcher("/WEB-INF/template.jsp").forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idModifyDisc = req.getParameter("idModifyDisc");
+        String modifyDisc = req.getParameter("modifyDisc");
+
+        DBManager.modifyDiscipline(modifyDisc, idModifyDisc);
+
+        resp.sendRedirect("/disciplines");
+    }
 }
