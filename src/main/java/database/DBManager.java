@@ -74,4 +74,13 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
+    public static void deleteDisciplines(String ids) {
+        try {
+            Statement stm = con.createStatement();
+            stm.execute("UPDATE `discipline` SET `status` = '0' WHERE (`id` in (" + ids + "));");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

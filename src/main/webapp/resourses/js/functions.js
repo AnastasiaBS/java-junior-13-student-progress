@@ -24,9 +24,18 @@ function deleteDisciplines() {
     }
     var ids;
 
+    for (var i = 0; i < items.length; i++) {
+        if (ids == null) {
+            ids = "'" + $(items[i]).attr("value");
+        } else {
+            ids = ids + "','" + $(items[0]).attr("value");
+        }
+        if (i == items.length - 1) {
+            ids = ids + "'"
+        }
+    }
 
-    var id = $(items[0]).attr("value");
-    $('#formModifyingDiscipline input').val(id);
-    $('#formModifyingDiscipline').submit();
+    $('#idsDeleteDisc').val(ids);
+    $('#formDeleteDisciplines').submit();
 
 }

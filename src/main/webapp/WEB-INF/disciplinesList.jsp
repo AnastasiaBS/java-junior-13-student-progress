@@ -51,7 +51,7 @@
     flex-direction: column-reverse">
                 <div style="padding: 15px" id="divDisciplineList3" class="row">
                     <div class="divDisciplineList col-sm-12">
-                        <a href="#">
+                        <a onclick="deleteDisciplines()">
                             <button style="color: rgb(150, 76, 101);
             font-family: 'Pacifico', cursive;
             font-size: medium;
@@ -154,7 +154,7 @@
 <form id="formModifyingDiscipline" method="get" action="/discipline-modify">
     <input type="hidden" id="idModifyDisc" name="idModifyDisc" value="">
 </form>
-<form id="formDeleteDiscipline" method="post" action="/disciplines">
+<form id="formDeleteDisciplines" method="post" action="/disciplines">
     <input type="hidden" id="idsDeleteDisc" name="idsDeleteDisc" value="">
 </form>
 

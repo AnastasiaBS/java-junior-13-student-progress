@@ -24,4 +24,13 @@ public class DisciplinesListController extends HttpServlet {
         req.setAttribute("currentPage", "/WEB-INF/disciplinesList.jsp");
         req.getRequestDispatcher("/WEB-INF/template.jsp").forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String ids = req.getParameter("idsDeleteDisc");
+
+        DBManager.deleteDisciplines(ids);
+        resp.sendRedirect("/disciplines");
+
+    }
 }
