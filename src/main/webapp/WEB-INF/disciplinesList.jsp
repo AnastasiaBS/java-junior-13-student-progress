@@ -64,7 +64,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             font-size: 16px;" type="button">
-                                Удалить выбранную дисциплину
+                                Удалить выбранные дисциплины
                             </button>
                         </a>
                     </div>
@@ -153,5 +153,8 @@
 
 <form id="formModifyingDiscipline" method="get" action="/discipline-modify">
     <input type="hidden" id="idModifyDisc" name="idModifyDisc" value="">
+</form>
+<form id="formDeleteDiscipline" method="post" action="/disciplines">
+    <input type="hidden" id="idsDeleteDisc" name="idsDeleteDisc" value="">
 </form>
 

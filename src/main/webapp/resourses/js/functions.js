@@ -14,3 +14,19 @@ function modifyDiscipline() {
     $('#formModifyingDiscipline').submit();
 
 }
+
+function deleteDisciplines() {
+
+    var items = $("input[type=checkbox]:checked");
+    if (items.length == 0) {
+        alert("Пожалуйста, выберите хотя бы одну дисциплину!");
+        return;
+    }
+    var ids;
+
+
+    var id = $(items[0]).attr("value");
+    $('#formModifyingDiscipline input').val(id);
+    $('#formModifyingDiscipline').submit();
+
+}
