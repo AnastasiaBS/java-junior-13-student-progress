@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 
-<html style="background-color: floralwhite;" style="background-size: cover;">
+<html style="background-color: floralwhite;" style="background-size: cover">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,16 +43,17 @@
     <div style="column-count: 2;
     display: flex;
     flex-direction: row-reverse">
-        <div>
-            <section style="padding-bottom: 276px;
+        <c:if test="${role eq 1}">
+            <div>
+                <section style="padding-bottom: 276px;
     text-indent: 275px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column-reverse">
-                <div style="padding: 15px" id="divDisciplineList3" class="row">
-                    <div class="divDisciplineList col-sm-12">
-                        <a onclick="deleteDisciplines()">
-                            <button style="color: rgb(150, 76, 101);
+                    <div style="padding: 15px" id="divDisciplineList3" class="row">
+                        <div class="divDisciplineList col-sm-12">
+                            <a onclick="deleteDisciplines()">
+                                <button style="color: rgb(150, 76, 101);
             font-family: 'Pacifico', cursive;
             font-size: medium;
             background-color: ghostwhite;
@@ -64,15 +65,15 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             font-size: 16px;" type="button">
-                                Удалить выбранные дисциплины
-                            </button>
-                        </a>
+                                    Удалить выбранные дисциплины
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div style="padding: 15px" id="divDisciplineList2" class="row">
-                    <div class="divDisciplineList col-sm-12">
-                        <a onclick="modifyDiscipline()">
-                            <button style="color: rgb(150, 76, 101);
+                    <div style="padding: 15px" id="divDisciplineList2" class="row">
+                        <div class="divDisciplineList col-sm-12">
+                            <a onclick="modifyDiscipline()">
+                                <button style="color: rgb(150, 76, 101);
             font-family: 'Pacifico', cursive;
             font-size: medium;
             background-color: ghostwhite;
@@ -84,15 +85,15 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             font-size: 16px;" type="button">
-                                Модифицировать выбранную дисциплину
-                            </button>
-                        </a>
+                                    Модифицировать выбранную дисциплину
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div style="padding: 15px" id="divDisciplineList1" class="row">
-                    <div class="divDisciplineList col-sm-12">
-                        <a href="/discipline-create">
-                            <button style="color: rgb(150, 76, 101);
+                    <div style="padding: 15px" id="divDisciplineList1" class="row">
+                        <div class="divDisciplineList col-sm-12">
+                            <a href="/discipline-create">
+                                <button style="color: rgb(150, 76, 101);
             font-family: 'Pacifico', cursive;
             font-size: medium;
             background-color: ghostwhite;
@@ -104,13 +105,14 @@
             border-radius: 12px;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             font-size: 16px;" type="button">
-                                Создать дисциплину
-                            </button>
-                        </a>
+                                    Создать дисциплину
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
+        </c:if>
         <section>
             <div>
                 <div style="padding-bottom: 82px;
@@ -129,15 +131,23 @@
                         </thead>
                         <tbody>
 
-                        <c:forEach items="${disces}" var="d">
-                            <tr style="font-family: 'Pacifico', cursive">
-                                <th>
+                        <c:forEach items="${disces}" var="d" varStatus="i">
+                            <c:if test="${d.discipline.length() > 0}">
+                                <tr style="font-family: 'Pacifico', cursive">
+                                <c:if test="${role eq 1}">
+                                    <th>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" value="${d.id}" class="custom-control-input" id="cbx1">
-                                        <label class="custom-control-label" for="cbx1"></label>
-                                    </div>
+
+                                    <input type="checkbox" value="${d.id}"
+                                           class="custom-control-input"
+                                           id="cbx${i.count}"
+                                           required>
+                                </c:if>
+                                <label class="custom-control-label" for="cbx${i.count}"></label>
+                                </div>
                                 </th>
-                                <td>${d.discipline}</td>
+                            </c:if>
+                            <td>${d.discipline}</td>
                             </tr>
                         </c:forEach>
 

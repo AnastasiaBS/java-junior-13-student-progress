@@ -47,7 +47,7 @@
             display: inline-block;
             border-radius: 12px;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-            font-size: 16px;" type="button">Выйди, ${userName}
+            font-size: 16px;" type="button">Выйди ${userName}
             </button>
         </a>
     </div>
