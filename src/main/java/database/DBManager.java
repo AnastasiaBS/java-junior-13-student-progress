@@ -22,7 +22,7 @@ public class DBManager {
             modifyDiscipline = con.prepareStatement("UPDATE `discipline` SET `discipline` = ? WHERE (`id` = ?);");
             getAccountByLoginPasswordRole = con.prepareStatement("SELECT * FROM user_role\n" +
                     "left join user on user_role.id_user = user.id\n" +
-                    "where user.login = ? and user.password = ? and user_role.id_role = ?;");
+                    "where user.login = ? and user.password = ? and user_role.id_role = ?");
         } catch (Exception e) {
             e.printStackTrace();
         }

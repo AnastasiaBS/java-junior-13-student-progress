@@ -32,19 +32,57 @@
     </div>
 </nav>
 
-<div>
+<div style="padding: 50px">
     <section>
-        <div style="text-align: left;
-    padding: 0 228px;
-    padding-top: 30px;">
+        <div>
             <h4 style="font-family: 'Pacifico', cursive; font-size: x-large">Список дисциплин:</h4>
         </div>
     </section>
     <div style="column-count: 2;
-    display: flex;
-    flex-direction: row-reverse">
-        <c:if test="${role eq 1}">
+align-items: flex-end;
+    display: -webkit-inline-box">
+        <section>
             <div>
+                <div style="padding-bottom: 82px;
+    text-indent: 21px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: self-start;">
+                    <table style="border: 3px solid palevioletred;
+    border-collapse: separate">
+                        <thead style="padding-bottom: 26px;
+    text-indent: 21px;
+    display: -webkit-box">
+                        <tr style="font-family: 'Pacifico', cursive; font-size: large">
+                            <th>Наименование дисциплины</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${disces}" var="d" varStatus="i">
+                            <c:if test="${d.discipline.length() > 0}">
+                                <tr style="font-family: 'Pacifico', cursive">
+                                    <c:if test="${role eq 1}">
+                                        <th>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="${d.id}"
+                                                       class="custom-control-input"
+                                                       id="cbx${i.count}"
+                                                       required>
+                                                <label class="custom-control-label" for="cbx${i.count}"></label>
+                                            </div>
+                                        </th>
+                                    </c:if>
+                                    <td>${d.discipline}</td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div>
+            <c:if test="${role eq 1}">
                 <section style="padding-bottom: 276px;
     text-indent: 275px;
     display: flex;
@@ -54,17 +92,17 @@
                         <div class="divDisciplineList col-sm-12">
                             <a onclick="deleteDisciplines()">
                                 <button style="color: rgb(150, 76, 101);
-            font-family: 'Pacifico', cursive;
-            font-size: medium;
-            background-color: ghostwhite;
-            border: none;
-            padding: 2px 8px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-            font-size: 16px;" type="button">
+    font-family: 'Pacifico', cursive;
+    font-size: medium;
+    background-color: ghostwhite;
+    border: none;
+    padding: 2px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    font-size: 16px;" type="button">
                                     Удалить выбранные дисциплины
                                 </button>
                             </a>
@@ -111,51 +149,8 @@
                         </div>
                     </div>
                 </section>
-            </div>
-        </c:if>
-        <section>
-            <div>
-                <div style="padding-bottom: 82px;
-    text-indent: 21px;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: self-start;">
-                    <table style="border: 3px solid palevioletred;
-    border-collapse: separate">
-                        <thead style="padding-bottom: 26px;
-    text-indent: 21px;
-    display: -webkit-box">
-                        <tr style="font-family: 'Pacifico', cursive; font-size: large">
-                            <th>Наименование дисциплины</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <c:forEach items="${disces}" var="d" varStatus="i">
-                            <c:if test="${d.discipline.length() > 0}">
-                                <tr style="font-family: 'Pacifico', cursive">
-                                <c:if test="${role eq 1}">
-                                    <th>
-                                    <div class="custom-control custom-checkbox">
-
-                                    <input type="checkbox" value="${d.id}"
-                                           class="custom-control-input"
-                                           id="cbx${i.count}"
-                                           required>
-                                </c:if>
-                                <label class="custom-control-label" for="cbx${i.count}"></label>
-                                </div>
-                                </th>
-                            </c:if>
-                            <td>${d.discipline}</td>
-                            </tr>
-                        </c:forEach>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+            </c:if>
+        </div>
     </div>
 </div>
 </body>
